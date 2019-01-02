@@ -1,0 +1,715 @@
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="googlebot" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+    <style id="compiled-css" type="text/css">
+        body {
+    font-size: 18px;
+    font-family: sans-serif;
+    color: #333;
+  }
+  
+  .question {
+    font-weight: 600;
+  }
+  
+  .answers {
+    margin-bottom: 20px;
+  }
+  
+  #submit {
+    font-family: sans-serif;
+    font-size: 18px;
+    background-color: #297;
+    color: #fff;
+    border: 0px;
+    border-radius: 3px;
+    padding: 20px;
+    cursor: pointer;
+    margin-bottom: 20px;
+  }
+  
+  #submit:hover {
+    background-color: #3a8;
+  }
+  
+  .inputGroup {
+    background-color: #fff;
+    display: block;
+    margin: 10px 0;
+    position: relative;
+  }
+  
+  .inputGroup label {
+    padding: 12px 30px;
+    width: 100%;
+    display: block;
+    text-align: left;
+    color: #3c454c;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    transition: color 200ms ease-in;
+    overflow: hidden;
+  }
+  
+  .inputGroup label:before {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    content: '';
+    background-color: #5562eb;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) scale3d(1, 1, 1);
+    transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0;
+    z-index: -1;
+  }
+  
+  .inputGroup label:after {
+    width: 32px;
+    height: 32px;
+    content: '';
+    border: 2px solid #d1d7dc;
+    background-color: #fff;
+    background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5.414 11L4 12.414l5.414 5.414L20.828 6.414 19.414 5l-10 10z' fill='%23fff' fill-rule='nonzero'/%3E%3C/svg%3E ");
+    background-repeat: no-repeat;
+    background-position: 2px 3px;
+    border-radius: 50%;
+    z-index: 2;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: all 200ms ease-in;
+  }
+  
+  .inputGroup input:checked~label {
+    color: #fff;
+  }
+  
+  .inputGroup input:checked~label:before {
+    transform: translate(-50%, -50%) scale3d(56, 56, 1);
+    opacity: 1;
+  }
+  
+  .inputGroup input:checked~label:after {
+    background-color: #54e0c7;
+    border-color: #54e0c7;
+  }
+  
+  .inputGroup input {
+    width: 32px;
+    height: 32px;
+    order: 1;
+    z-index: 2;
+    position: absolute;
+    right: 30px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    visibility: hidden;
+  }
+  
+  .form {
+    padding: 0 16px;
+    max-width: 550px;
+    margin: 50px auto;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 36px;
+  }
+  
+  body {
+    background-color: #d1d7dc;
+    font-family: 'Fira Sans', sans-serif;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: inherit;
+  }
+  
+  html {
+    box-sizing: border-box;
+  }
+  
+  code {
+    background-color: #9aa3ac;
+    padding: 0 8px;
+  }
+  
+    </style>
+  
+  
+    
+  
+    <script type="text/javascript">
+  
+  
+      window.onload=function(){
+        
+  console.clear();
+  
+  function shuffle(array) {
+    var currentIndex = array.length,
+      temporaryValue, randomIndex;
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+    return array;
+  }
+  
+  function charN(ind) {
+    return String.fromCharCode(97 + ind)
+  };
+  
+  function gqq(quest, correctanswer, ...answers) {
+  
+    let tempObj = {};
+    let correct = answers[0];
+  
+    answers = shuffle(answers);
+    for (let i = 0; i < answers.length; i++) {
+      tempObj[charN(i)] = answers[i]
+      if (answers[i] === correct) {
+        correctanswer = charN(i)
+      }
+    }
+  
+    return {
+      question: quest,
+      answers: tempObj,
+      correctAnswer: correctanswer
+    }
+  }
+  
+  var myQuestions = [
+    gqq(
+      "From which direction does AutoCAD start measuring angles",
+      "a",
+      "3 o'clock",
+      "9 o'clock",
+      "6 o'clock",
+      "12 o'clock"
+    ),
+  
+    gqq(
+      "What does WCS stand for?",
+      "a",
+      "World Coordinate System",
+      "Worldwide Coordinate Sectors",
+      "Western CAD System",
+      "Wrong CAD Settings"
+    ),
+  
+    gqq(
+      "When drawing in 2D, what axis do you NOT work with?",
+      "a",
+      "Z",
+      "X",
+      "Y",
+      "WCS"
+    ),
+  
+    gqq(
+      "Is 300 degrees the same as -60 degrees in a drawing?",
+      "",
+      "Yes",
+      "No",
+      "It depends upon your drawing",
+      "Only in the WCS"
+    ),
+  
+    gqq(
+      "Which of the following is NOT a way to enter coordinates in AutoCAD?",
+      "a",
+      "Approximate",
+      "Relative",
+      "Polar",
+      "Absolute"
+    ),
+  
+    gqq(
+      "Which one of these will NOT start the Print command",
+      "a",
+      "ALT+P",
+      "PLOT",
+      "PRINT",
+      "CTRL+P"
+    ),
+  
+    gqq(
+      "What should you pay close attention to when learning AutoCAD?",
+      "a",
+      "The Command Line",
+      "The Toolbar",
+      "Tool Icons",
+      "The Title Bar"
+    ),
+  
+    gqq(
+      "Polar coordinates are used mostly for drawing...?",
+      "a",
+      "Angled Lines",
+      "Curved Lines",
+      "Vertical LInes",
+      "Arcs"
+    ),
+  
+    gqq(
+      "Which keystrokes will UNDO a command",
+      "a",
+      "CRTL+Z",
+      "ALT+U",
+      "CTRL+U",
+      "Absolute"
+    ),
+  
+    gqq(
+      "When using the TRIM command, which do you select first?",
+      "a",
+      "The cutting edges",
+      "The object to be trimmed",
+      "Everything",
+      "Nothing"
+    ),
+  
+    gqq(
+      "How many snap points does an object have?",
+      "a",
+      "Depends upon the object",
+      "1",
+      "3 or more",
+      "2"
+    ),
+  
+  
+    gqq(
+      "How many points do you need to define for the rectangle command?",
+      "a",
+      "2",
+      "4",
+      "1",
+      "Zero"
+    ),
+  
+    gqq(
+      "How many AutoCAD objects are in a rectangle?",
+      "a",
+      "1",
+      "4",
+      "2",
+      "Zero"
+    ),
+  
+    gqq(
+      "If you draw a line at 270 degrees it will point ___",
+      "a",
+      "Down",
+      "Up",
+      "Left",
+      "Right"
+    ),
+  
+    gqq(
+      "How long is a line from 1,4 to 4,4?",
+      "a",
+      "4 units",
+      "3 units",
+      "Can't easily tell from those coordinates",
+      "Right"
+    ),
+  
+    gqq(
+      "How long is a line drawn from 1,4 to @4<5 ",
+      "a",
+      "4 units",
+      "3 units",
+      "3.5467 units",
+      "Right"
+    ),
+  
+    gqq(
+      "How many points do you need to draw a line using Absolute Coordinates",
+      "a",
+      "2",
+      "1",
+      "It depends upon the line",
+      "Right"
+    ),
+  
+    gqq(
+      "When selecting objects, pressing 'L' will:",
+      "a",
+      "Select the last object created",
+      "Select lines only",
+      "Select the last object you modified",
+      "Do Nothing"
+    ),
+  
+    gqq(
+      "Pressing Shift while you are selecting will:",
+      "a",
+      "Remove the next selected object from the set",
+      "Automatically delete the object(s),",
+      "Allow you to draw a window",
+      "Highlight the selected objects"
+    ),
+  
+    gqq(
+      "Pressing F when selecting objects will...",
+      "a",
+      "Allow you to draw a fence",
+      "Finish the selection set",
+      "Allow you to find specific text",
+      "Limit you to five objects"
+    ),
+  
+    gqq(
+      "How do you select the last set of object(s), you selected",
+      "a",
+      "Type P",
+      "Type H to highlight them",
+      "Type L",
+      "You can not do this"
+    ),
+  
+    gqq(
+      "How do you select objects with a Crossing Selection?",
+      "a",
+      "Draw a window from right to left",
+      "Draw a window from left to right",
+      "Draw a window from up to down",
+      "Draw a window from down to up"
+    ),
+  
+    gqq(
+      "What is the best way of drawing a rectangle?",
+      "a",
+      "Using the Rectangle command",
+      "Using the Line command",
+      "Using the Polyline command",
+      "Using the Multiline command"
+    ),
+  
+    gqq(
+      "To move something four units to the right, what would be the 2nd point of displacement?",
+      "a",
+      "@4,0",
+      "4,0",
+      "@4.0",
+      "4"
+    ),
+  
+    gqq(
+      "How should you select objects when using the stretch command?.",
+      "a",
+      "With a crossing selection",
+      "Pick them one by one",
+      "Hold the shift key while selecting",
+      "Press S while selecting"
+    ),
+  
+    gqq(
+      "The origin of a drawing is at:",
+      "a",
+      "0,0",
+      "The first point you select",
+      "A random point in space",
+      "The last point you select"
+    ),
+  
+    gqq(
+      "Objects are rotated around the ____",
+      "a",
+      "Base point",
+      "Bottom right of the object",
+      "Centre of the object",
+      "Drawing Origin"
+    ),
+  
+    gqq(
+      "The fillet command creates ____",
+      "a",
+      "Both Round and Sharp Corners",
+      "Round Corners",
+      "Angled Corners",
+      "A boneless fish"
+    ),
+  
+    gqq(
+      "A polar array creates new objects ____",
+      "a",
+      "In a circular pattern",
+      "In a straight line",
+      "In a grid pattern",
+      "In an northern pattern"
+    ),
+  
+    gqq(
+      "The distances set for a chamfer are ____",
+      "a",
+      "Sometimes different",
+      "Always different",
+      "Always the same",
+      "Never the same"
+    ),
+  
+    gqq(
+      "You should use Osnaps when you dimension ____",
+      "a",
+      "Always",
+      "Never",
+      "Only on large drawings",
+      "Only on arcs and circles"
+    ),
+  
+    gqq(
+      "How many layers should a drawing have?",
+      "a",
+      "As many as are needed",
+      "4",
+      "1 or 2",
+      "One for each object"
+    ),
+  
+    gqq(
+      "When can you set the height of your text?",
+      "a",
+      "When you are starting the Text command",
+      "Only when you start the drawing",
+      "Only in a special text dialog box",
+      "You can't, it is pre-set by AutoCAD"
+    ),
+  
+    gqq(
+      "Scaling objects makes them ____",
+      "a",
+      "Either Bigger and Smaller",
+      "Bigger",
+      "Smaller",
+      "It only streches them"
+    ),
+  
+    gqq(
+      "DDE can be used in which direction?",
+      "a",
+      "All",
+      "45 degree increments",
+      "90 degree increments",
+      "30 degree increments"
+    ),
+  
+    gqq(
+      "When using Object Snap Tracking, you should turn on ____",
+      "a",
+      "Both Osnap and Otrack",
+      "Osnaps (F3),",
+      "Object Snap Tracking (F11),",
+      "Ortho Mode (F8),"
+    ),
+  
+    gqq(
+      "When setting up Polar Tracking, the Increment Angle ____",
+      "a",
+      "Sets multiplies of the selected angle",
+      "Locks you into one angle",
+      "Doesn't really do anything",
+      "Makes you a master draftsman"
+    ),
+  
+    gqq(
+      "Object tracking works only with ____",
+      "a",
+      "Any active Osnap",
+      "Endpoints only",
+      "Midpoints only",
+      "Any point on the screen"
+    ),
+  
+    gqq(
+      "How can you change an object's properties?",
+      "a",
+      "All",
+      "Right Click and choose Quick Properties",
+      "Right click and choose Properties",
+      "Double Click the object"
+    ),
+  
+    gqq(
+      "Double clicking on a text object allows you to change its layer",
+      "a",
+      "No",
+      "Yes",
+      "Only if it is on the TEXT layer",
+      "Only if you have 2 layers"
+    ),
+  
+    gqq(
+      "If you select a line and a rectangle and view the properties ____",
+      "a",
+      "You will see only limited properties",
+      "You will see all the properties",
+      "You will see the properties of the first selected object",
+      "You will not see any properties"
+    ),
+  
+    gqq(
+      "When you want to close the Properties palette ____",
+      "a",
+      "Click the X in the top left of the palette",
+      "Type CLOSE",
+      "Move it off the screen",
+      "Deselect the object"
+    ),
+  
+    gqq(
+      "To invoke the Zoom command transparently, type ____",
+      "a",
+      "'Z",
+      "@Z",
+      ":Z",
+      "^Z"
+    ),
+  
+    gqq(
+      "Which is not a valid Zoom option?",
+      "a",
+      "Next",
+      "Previous",
+      "All",
+      "Extents"
+    ),
+  
+    gqq(
+      "Panning allows you to ____",
+      "a",
+      "Move around the drawing at the same scale",
+      "See all of the drawing at once",
+      "Close in on a small area",
+      "Minimize the drawing"
+    ),
+  
+    gqq(
+      "Why should you use the Zoom tools?",
+      "a",
+      "All",
+      "To be more accurate",
+      "To be faster",
+      "To make your life easier"
+    )
+  
+  ];
+  var quizContainer = document.getElementById('quiz');
+  var resultsContainer = document.getElementById('results');
+  var submitButton = document.getElementById('submit');
+  
+  generateQuiz(myQuestions, quizContainer, resultsContainer, submitButton);
+  
+  function generateQuiz(questions, quizContainer, resultsContainer, submitButton) {
+  
+    function showQuestions(questions, quizContainer) {
+  
+      var output = [];
+      var answers;
+  
+  
+      for (var i = 0; i < questions.length; i++) {
+  
+  
+        answers = [];
+  
+  
+        for (var letter in questions[i].answers) {
+  
+  
+          let qname = "question" + i + letter + Date.now()
+  
+          answers.push(
+            `
+            <div class="inputGroup">
+            <input 
+            id="${qname}" 
+            name="radio" 
+            type="radio"
+            value="${letter}"/>
+            <label for="${qname}">${letter + ': ' +
+            questions[i].answers[letter]}</label>
+            </div>
+            `
+          );
+        }
+  
+  
+        output.push(
+          `
+          <form class="form" id=${'question'+i}>
+          <div class="question"> 
+          ${questions[i].question} 
+          </div>
+          
+          <div class="answers">
+          ${answers.join('')} 
+         </div>
+          </form>
+          `
+        );
+      }
+  
+  
+      quizContainer.innerHTML = output.join('');
+    }
+  
+  
+    function showResults(questions, quizContainer, resultsContainer) {
+      var form = quizContainer.querySelectorAll('form');
+  
+      let numberCorrect = 0;
+  
+      for (let i = 0; i < form.length; i++) {
+        let radios = form[i].querySelectorAll('input');
+        for (let j = 0; j < radios.length; j++) {
+          let currentItem = radios[j].parentElement.getElementsByTagName('Label')[0];
+          currentItem.style.color = 'red';
+          if (charN(j) === questions[i].correctAnswer) {
+            if (radios[j].checked) {
+              console.log("right");
+              numberCorrect += 1;
+            }
+            currentItem.style.color = 'darkgreen';
+          }
+        }
+      }
+      resultsContainer.innerHTML = numberCorrect + ' out of ' + questions.length;
+      submitButton.disabled = true;
+    }
+    showQuestions(questions, quizContainer);
+    submitButton.onclick = function() {
+      showResults(questions, quizContainer, resultsContainer);
+    }
+  }
+  
+  
+      }
+  
+  </script>
+  
+  </head>
+<body>
+    <div id="quiz"></div>
+    <button id="submit">Get Results</button>
+    <div id="results"></div>  
+</body>
